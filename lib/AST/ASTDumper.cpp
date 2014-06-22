@@ -540,7 +540,7 @@ void ASTDumper::dumpName(const NamedDecl *ND) {
 	OS << " name:'";
   if (ND->getDeclName()) {
     ColorScope Color(*this, DeclNameColor);
-    OS << ' ' << ND->getNameAsString();
+    OS << ND->getNameAsString();
   }
   OS << "'";
 }
@@ -1725,8 +1725,9 @@ void ASTDumper::VisitFloatingLiteral(const FloatingLiteral *Node) {
 void ASTDumper::VisitStringLiteral(const StringLiteral *Str) {
   VisitExpr(Str);
   ColorScope Color(*this, ValueColor);
-  OS << " literal:";
+  OS << " literal:'";
   Str->outputString(OS);
+  OS << "'";
 }
 
 void ASTDumper::VisitInitListExpr(const InitListExpr *ILE) {
